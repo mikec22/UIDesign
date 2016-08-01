@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4e784374d15d44689e42db908cb67b1f" Name="Diagram1">
+        <EntityTypeShape EntityType="MMS_Model.competitior_price" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.competitor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.dealer_customer" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.item" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.member" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.member_discount" Width="1.5" PointX="3.75" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.member_type" Width="1.5" PointX="1.5" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.purchase_order" Width="1.5" PointX="3.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.purchase_orderline" Width="1.5" PointX="6" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.quotation" Width="1.5" PointX="3.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.quotation_item" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.reserve_request" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.sales_order" Width="1.5" PointX="0.75" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.sales_orderline" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.staff" Width="1.5" PointX="1.5" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.store" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MMS_Model.store_item" Width="1.5" PointX="6" PointY="14.625" IsExpanded="true" />
+        <AssociationConnector Association="MMS_Model.CompetitiorPrice_CompetitotID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.CompetitiorPrice_DCID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.CompetitiorPrice_ItemID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.CompetitiorPrice_MemberID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.Qutation_DCID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.ReserveRequest_DCID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.SalesOrder_DCID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.ItemID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.PurchaseOrderLine_ItemID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.quotation_item_ItemID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.ReserveRequest_ItemID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.sales_orderline_ItemID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.Member_TypeID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.Quotation_MemberID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.ReserveRequest_MemberID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.SalesOrder_MemberID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.member_discount_TypeID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.PurchaseOrder_StaffID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.PurchaseOrder_StoreID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.PurchaseOrderLine_PurchaseOrderID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.quotation_item_QuotationID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.Quotation_StaffID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.ReserveRequest_StoreID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.sales_orderline_OrderID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.SalesOrder_StaffID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.SalesOrder_StoreID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.Staff_StoreID" ManuallyRouted="false" />
+        <AssociationConnector Association="MMS_Model.ItemStoreID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

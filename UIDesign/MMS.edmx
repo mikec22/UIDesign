@@ -1,0 +1,1627 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MMS_Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="competitior_price">
+          <Key>
+            <PropertyRef Name="CompetitiorID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="CompetitiorID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MemberID" Type="varchar" MaxLength="6" />
+          <Property Name="DCID" Type="varchar" MaxLength="6" />
+          <Property Name="CompetitiorPrice" Type="double" Nullable="false" />
+          <Property Name="Approval" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="ApprovalDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="competitor">
+          <Key>
+            <PropertyRef Name="CompetitorID" />
+          </Key>
+          <Property Name="CompetitorID" Type="int" Nullable="false" />
+          <Property Name="CompetitorName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompetitorDescription" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="dealer_customer">
+          <Key>
+            <PropertyRef Name="DCID" />
+          </Key>
+          <Property Name="DCID" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Phone" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="75" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ItemName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ItemType" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ItemDescription" Type="varchar" MaxLength="150" />
+          <Property Name="ItemPrice" Type="double" Nullable="false" />
+          <Property Name="StreetSellingPriceMax" Type="double" />
+          <Property Name="StreetSellingPriceMin" Type="double" />
+        </EntityType>
+        <EntityType Name="member">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Gender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="HKID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Phone" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="member_discount">
+          <Key>
+            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="start_date" />
+            <PropertyRef Name="end_date" />
+          </Key>
+          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="start_date" Type="date" Nullable="false" />
+          <Property Name="end_date" Type="date" Nullable="false" />
+          <Property Name="discount" Type="double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="member_type">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="purchase_order">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+          </Key>
+          <Property Name="PurchaseID" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="StaffID" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="StoreID" Type="int" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+          <Property Name="Total" Type="double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="purchase_orderline">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="PurchaseID" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="ItemPrice" Type="double" Nullable="false" />
+          <Property Name="TotalPrice" Type="double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="quotation">
+          <Key>
+            <PropertyRef Name="QuotationID" />
+          </Key>
+          <Property Name="QuotationID" Type="int" Nullable="false" />
+          <Property Name="StaffID" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="MemberID" Type="varchar" MaxLength="6" />
+          <Property Name="DCID" Type="varchar" MaxLength="6" />
+          <Property Name="QuotaionDate" Type="date" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="TotalPrice" Type="double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="quotation_item">
+          <Key>
+            <PropertyRef Name="QuotationID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="QuotationID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="SubTotal" Type="double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="reserve_request">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="StoreID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="varchar" MaxLength="6" />
+          <Property Name="DCID" Type="varchar" MaxLength="6" />
+          <Property Name="SendRequestDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="ReserveDate" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sales_order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="StoreID" Type="int" Nullable="false" />
+          <Property Name="StaffID" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="MemberID" Type="varchar" MaxLength="6" />
+          <Property Name="DCID" Type="varchar" MaxLength="6" />
+          <Property Name="TotalAmount" Type="double" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+          <Property Name="Discount" Type="double" Nullable="false" />
+          <Property Name="Remark" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="sales_orderline">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="TotalPrice" Type="double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="staff">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="StoreID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Gender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="HKID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Password" Type="char" MaxLength="64" Nullable="false" />
+          <Property Name="Phone" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="DOB" Type="date" Nullable="false" />
+          <Property Name="DOE" Type="date" Nullable="false" />
+          <Property Name="DOL" Type="date" />
+          <Property Name="SOR" Type="int" Nullable="false" />
+          <Property Name="CRM" Type="int" Nullable="false" />
+          <Property Name="INV" Type="int" Nullable="false" />
+          <Property Name="ENQ" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="store">
+          <Key>
+            <PropertyRef Name="StoreID" />
+          </Key>
+          <Property Name="StoreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="Phone" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="Nickname" Type="varchar" MaxLength="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="store_item">
+          <Key>
+            <PropertyRef Name="StoreID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="StoreID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="CompetitiorPrice_CompetitotID">
+          <End Role="competitor" Type="Self.competitor" Multiplicity="1" />
+          <End Role="competitior_price" Type="Self.competitior_price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="competitor">
+              <PropertyRef Name="CompetitorID" />
+            </Principal>
+            <Dependent Role="competitior_price">
+              <PropertyRef Name="CompetitiorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CompetitiorPrice_DCID">
+          <End Role="dealer_customer" Type="Self.dealer_customer" Multiplicity="0..1" />
+          <End Role="competitior_price" Type="Self.competitior_price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dealer_customer">
+              <PropertyRef Name="DCID" />
+            </Principal>
+            <Dependent Role="competitior_price">
+              <PropertyRef Name="DCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CompetitiorPrice_ItemID">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="competitior_price" Type="Self.competitior_price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="competitior_price">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CompetitiorPrice_MemberID">
+          <End Role="member" Type="Self.member" Multiplicity="0..1" />
+          <End Role="competitior_price" Type="Self.competitior_price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="competitior_price">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ItemID">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="store_item" Type="Self.store_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="store_item">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ItemStoreID">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="store_item" Type="Self.store_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="store_item">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="member_discount_TypeID">
+          <End Role="member_type" Type="Self.member_type" Multiplicity="1" />
+          <End Role="member_discount" Type="Self.member_discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member_type">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="member_discount">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Member_TypeID">
+          <End Role="member_type" Type="Self.member_type" Multiplicity="1" />
+          <End Role="member" Type="Self.member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member_type">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="member">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PurchaseOrder_StaffID">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="purchase_order" Type="Self.purchase_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="purchase_order">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PurchaseOrder_StoreID">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="purchase_order" Type="Self.purchase_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="purchase_order">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PurchaseOrderLine_ItemID">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="purchase_orderline" Type="Self.purchase_orderline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="purchase_orderline">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PurchaseOrderLine_PurchaseOrderID">
+          <End Role="purchase_order" Type="Self.purchase_order" Multiplicity="1" />
+          <End Role="purchase_orderline" Type="Self.purchase_orderline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="purchase_order">
+              <PropertyRef Name="PurchaseID" />
+            </Principal>
+            <Dependent Role="purchase_orderline">
+              <PropertyRef Name="PurchaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="quotation_item_ItemID">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="quotation_item" Type="Self.quotation_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="quotation_item">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="quotation_item_QuotationID">
+          <End Role="quotation" Type="Self.quotation" Multiplicity="1" />
+          <End Role="quotation_item" Type="Self.quotation_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quotation">
+              <PropertyRef Name="QuotationID" />
+            </Principal>
+            <Dependent Role="quotation_item">
+              <PropertyRef Name="QuotationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Quotation_MemberID">
+          <End Role="member" Type="Self.member" Multiplicity="0..1" />
+          <End Role="quotation" Type="Self.quotation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="quotation">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Quotation_StaffID">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="quotation" Type="Self.quotation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="quotation">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Qutation_DCID">
+          <End Role="dealer_customer" Type="Self.dealer_customer" Multiplicity="0..1" />
+          <End Role="quotation" Type="Self.quotation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dealer_customer">
+              <PropertyRef Name="DCID" />
+            </Principal>
+            <Dependent Role="quotation">
+              <PropertyRef Name="DCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReserveRequest_DCID">
+          <End Role="dealer_customer" Type="Self.dealer_customer" Multiplicity="0..1" />
+          <End Role="reserve_request" Type="Self.reserve_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dealer_customer">
+              <PropertyRef Name="DCID" />
+            </Principal>
+            <Dependent Role="reserve_request">
+              <PropertyRef Name="DCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReserveRequest_ItemID">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="reserve_request" Type="Self.reserve_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="reserve_request">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReserveRequest_MemberID">
+          <End Role="member" Type="Self.member" Multiplicity="0..1" />
+          <End Role="reserve_request" Type="Self.reserve_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="reserve_request">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReserveRequest_StoreID">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="reserve_request" Type="Self.reserve_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="reserve_request">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sales_orderline_ItemID">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="sales_orderline" Type="Self.sales_orderline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="sales_orderline">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sales_orderline_OrderID">
+          <End Role="sales_order" Type="Self.sales_order" Multiplicity="1" />
+          <End Role="sales_orderline" Type="Self.sales_orderline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sales_order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="sales_orderline">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SalesOrder_DCID">
+          <End Role="dealer_customer" Type="Self.dealer_customer" Multiplicity="0..1" />
+          <End Role="sales_order" Type="Self.sales_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dealer_customer">
+              <PropertyRef Name="DCID" />
+            </Principal>
+            <Dependent Role="sales_order">
+              <PropertyRef Name="DCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SalesOrder_MemberID">
+          <End Role="member" Type="Self.member" Multiplicity="0..1" />
+          <End Role="sales_order" Type="Self.sales_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="sales_order">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SalesOrder_StaffID">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="sales_order" Type="Self.sales_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="sales_order">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SalesOrder_StoreID">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="sales_order" Type="Self.sales_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="sales_order">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Staff_StoreID">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="staff" Type="Self.staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="staff">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MMS_ModelStoreContainer">
+          <EntitySet Name="competitior_price" EntityType="Self.competitior_price" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="competitor" EntityType="Self.competitor" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="dealer_customer" EntityType="Self.dealer_customer" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="item" EntityType="Self.item" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="member" EntityType="Self.member" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="member_discount" EntityType="Self.member_discount" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="member_type" EntityType="Self.member_type" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="purchase_order" EntityType="Self.purchase_order" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="purchase_orderline" EntityType="Self.purchase_orderline" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="quotation" EntityType="Self.quotation" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="quotation_item" EntityType="Self.quotation_item" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="reserve_request" EntityType="Self.reserve_request" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="sales_order" EntityType="Self.sales_order" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="sales_orderline" EntityType="Self.sales_orderline" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="staff" EntityType="Self.staff" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="store" EntityType="Self.store" Schema="mms" store:Type="Tables" />
+          <EntitySet Name="store_item" EntityType="Self.store_item" Schema="mms" store:Type="Tables" />
+          <AssociationSet Name="CompetitiorPrice_CompetitotID" Association="Self.CompetitiorPrice_CompetitotID">
+            <End Role="competitor" EntitySet="competitor" />
+            <End Role="competitior_price" EntitySet="competitior_price" />
+          </AssociationSet>
+          <AssociationSet Name="CompetitiorPrice_DCID" Association="Self.CompetitiorPrice_DCID">
+            <End Role="dealer_customer" EntitySet="dealer_customer" />
+            <End Role="competitior_price" EntitySet="competitior_price" />
+          </AssociationSet>
+          <AssociationSet Name="CompetitiorPrice_ItemID" Association="Self.CompetitiorPrice_ItemID">
+            <End Role="item" EntitySet="item" />
+            <End Role="competitior_price" EntitySet="competitior_price" />
+          </AssociationSet>
+          <AssociationSet Name="CompetitiorPrice_MemberID" Association="Self.CompetitiorPrice_MemberID">
+            <End Role="member" EntitySet="member" />
+            <End Role="competitior_price" EntitySet="competitior_price" />
+          </AssociationSet>
+          <AssociationSet Name="ItemID" Association="Self.ItemID">
+            <End Role="item" EntitySet="item" />
+            <End Role="store_item" EntitySet="store_item" />
+          </AssociationSet>
+          <AssociationSet Name="ItemStoreID" Association="Self.ItemStoreID">
+            <End Role="store" EntitySet="store" />
+            <End Role="store_item" EntitySet="store_item" />
+          </AssociationSet>
+          <AssociationSet Name="member_discount_TypeID" Association="Self.member_discount_TypeID">
+            <End Role="member_type" EntitySet="member_type" />
+            <End Role="member_discount" EntitySet="member_discount" />
+          </AssociationSet>
+          <AssociationSet Name="Member_TypeID" Association="Self.Member_TypeID">
+            <End Role="member_type" EntitySet="member_type" />
+            <End Role="member" EntitySet="member" />
+          </AssociationSet>
+          <AssociationSet Name="PurchaseOrder_StaffID" Association="Self.PurchaseOrder_StaffID">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="purchase_order" EntitySet="purchase_order" />
+          </AssociationSet>
+          <AssociationSet Name="PurchaseOrder_StoreID" Association="Self.PurchaseOrder_StoreID">
+            <End Role="store" EntitySet="store" />
+            <End Role="purchase_order" EntitySet="purchase_order" />
+          </AssociationSet>
+          <AssociationSet Name="PurchaseOrderLine_ItemID" Association="Self.PurchaseOrderLine_ItemID">
+            <End Role="item" EntitySet="item" />
+            <End Role="purchase_orderline" EntitySet="purchase_orderline" />
+          </AssociationSet>
+          <AssociationSet Name="PurchaseOrderLine_PurchaseOrderID" Association="Self.PurchaseOrderLine_PurchaseOrderID">
+            <End Role="purchase_order" EntitySet="purchase_order" />
+            <End Role="purchase_orderline" EntitySet="purchase_orderline" />
+          </AssociationSet>
+          <AssociationSet Name="quotation_item_ItemID" Association="Self.quotation_item_ItemID">
+            <End Role="item" EntitySet="item" />
+            <End Role="quotation_item" EntitySet="quotation_item" />
+          </AssociationSet>
+          <AssociationSet Name="quotation_item_QuotationID" Association="Self.quotation_item_QuotationID">
+            <End Role="quotation" EntitySet="quotation" />
+            <End Role="quotation_item" EntitySet="quotation_item" />
+          </AssociationSet>
+          <AssociationSet Name="Quotation_MemberID" Association="Self.Quotation_MemberID">
+            <End Role="member" EntitySet="member" />
+            <End Role="quotation" EntitySet="quotation" />
+          </AssociationSet>
+          <AssociationSet Name="Quotation_StaffID" Association="Self.Quotation_StaffID">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="quotation" EntitySet="quotation" />
+          </AssociationSet>
+          <AssociationSet Name="Qutation_DCID" Association="Self.Qutation_DCID">
+            <End Role="dealer_customer" EntitySet="dealer_customer" />
+            <End Role="quotation" EntitySet="quotation" />
+          </AssociationSet>
+          <AssociationSet Name="ReserveRequest_DCID" Association="Self.ReserveRequest_DCID">
+            <End Role="dealer_customer" EntitySet="dealer_customer" />
+            <End Role="reserve_request" EntitySet="reserve_request" />
+          </AssociationSet>
+          <AssociationSet Name="ReserveRequest_ItemID" Association="Self.ReserveRequest_ItemID">
+            <End Role="item" EntitySet="item" />
+            <End Role="reserve_request" EntitySet="reserve_request" />
+          </AssociationSet>
+          <AssociationSet Name="ReserveRequest_MemberID" Association="Self.ReserveRequest_MemberID">
+            <End Role="member" EntitySet="member" />
+            <End Role="reserve_request" EntitySet="reserve_request" />
+          </AssociationSet>
+          <AssociationSet Name="ReserveRequest_StoreID" Association="Self.ReserveRequest_StoreID">
+            <End Role="store" EntitySet="store" />
+            <End Role="reserve_request" EntitySet="reserve_request" />
+          </AssociationSet>
+          <AssociationSet Name="sales_orderline_ItemID" Association="Self.sales_orderline_ItemID">
+            <End Role="item" EntitySet="item" />
+            <End Role="sales_orderline" EntitySet="sales_orderline" />
+          </AssociationSet>
+          <AssociationSet Name="sales_orderline_OrderID" Association="Self.sales_orderline_OrderID">
+            <End Role="sales_order" EntitySet="sales_order" />
+            <End Role="sales_orderline" EntitySet="sales_orderline" />
+          </AssociationSet>
+          <AssociationSet Name="SalesOrder_DCID" Association="Self.SalesOrder_DCID">
+            <End Role="dealer_customer" EntitySet="dealer_customer" />
+            <End Role="sales_order" EntitySet="sales_order" />
+          </AssociationSet>
+          <AssociationSet Name="SalesOrder_MemberID" Association="Self.SalesOrder_MemberID">
+            <End Role="member" EntitySet="member" />
+            <End Role="sales_order" EntitySet="sales_order" />
+          </AssociationSet>
+          <AssociationSet Name="SalesOrder_StaffID" Association="Self.SalesOrder_StaffID">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="sales_order" EntitySet="sales_order" />
+          </AssociationSet>
+          <AssociationSet Name="SalesOrder_StoreID" Association="Self.SalesOrder_StoreID">
+            <End Role="store" EntitySet="store" />
+            <End Role="sales_order" EntitySet="sales_order" />
+          </AssociationSet>
+          <AssociationSet Name="Staff_StoreID" Association="Self.Staff_StoreID">
+            <End Role="store" EntitySet="store" />
+            <End Role="staff" EntitySet="staff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MMS_Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="competitior_price">
+          <Key>
+            <PropertyRef Name="CompetitiorID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="CompetitiorID" Type="Int32" Nullable="false" />
+          <Property Name="ItemID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MemberID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="DCID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="CompetitiorPrice" Type="Double" Nullable="false" />
+          <Property Name="Approval" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" />
+          <Property Name="ApprovalDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="competitor" Relationship="Self.CompetitiorPrice_CompetitotID" FromRole="competitior_price" ToRole="competitor" />
+          <NavigationProperty Name="dealer_customer" Relationship="Self.CompetitiorPrice_DCID" FromRole="competitior_price" ToRole="dealer_customer" />
+          <NavigationProperty Name="item" Relationship="Self.CompetitiorPrice_ItemID" FromRole="competitior_price" ToRole="item" />
+          <NavigationProperty Name="member" Relationship="Self.CompetitiorPrice_MemberID" FromRole="competitior_price" ToRole="member" />
+        </EntityType>
+        <EntityType Name="competitor">
+          <Key>
+            <PropertyRef Name="CompetitorID" />
+          </Key>
+          <Property Name="CompetitorID" Type="Int32" Nullable="false" />
+          <Property Name="CompetitorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompetitorDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="competitior_price" Relationship="Self.CompetitiorPrice_CompetitotID" FromRole="competitor" ToRole="competitior_price" />
+        </EntityType>
+        <EntityType Name="dealer_customer">
+          <Key>
+            <PropertyRef Name="DCID" />
+          </Key>
+          <Property Name="DCID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="competitior_price" Relationship="Self.CompetitiorPrice_DCID" FromRole="dealer_customer" ToRole="competitior_price" />
+          <NavigationProperty Name="quotation" Relationship="Self.Qutation_DCID" FromRole="dealer_customer" ToRole="quotation" />
+          <NavigationProperty Name="reserve_request" Relationship="Self.ReserveRequest_DCID" FromRole="dealer_customer" ToRole="reserve_request" />
+          <NavigationProperty Name="sales_order" Relationship="Self.SalesOrder_DCID" FromRole="dealer_customer" ToRole="sales_order" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ItemPrice" Type="Double" Nullable="false" />
+          <Property Name="StreetSellingPriceMax" Type="Double" />
+          <Property Name="StreetSellingPriceMin" Type="Double" />
+          <NavigationProperty Name="competitior_price" Relationship="Self.CompetitiorPrice_ItemID" FromRole="item" ToRole="competitior_price" />
+          <NavigationProperty Name="store_item" Relationship="Self.ItemID" FromRole="item" ToRole="store_item" />
+          <NavigationProperty Name="purchase_orderline" Relationship="Self.PurchaseOrderLine_ItemID" FromRole="item" ToRole="purchase_orderline" />
+          <NavigationProperty Name="quotation_item" Relationship="Self.quotation_item_ItemID" FromRole="item" ToRole="quotation_item" />
+          <NavigationProperty Name="reserve_request" Relationship="Self.ReserveRequest_ItemID" FromRole="item" ToRole="reserve_request" />
+          <NavigationProperty Name="sales_orderline" Relationship="Self.sales_orderline_ItemID" FromRole="item" ToRole="sales_orderline" />
+        </EntityType>
+        <EntityType Name="member">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HKID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="competitior_price" Relationship="Self.CompetitiorPrice_MemberID" FromRole="member" ToRole="competitior_price" />
+          <NavigationProperty Name="member_type" Relationship="Self.Member_TypeID" FromRole="member" ToRole="member_type" />
+          <NavigationProperty Name="quotation" Relationship="Self.Quotation_MemberID" FromRole="member" ToRole="quotation" />
+          <NavigationProperty Name="reserve_request" Relationship="Self.ReserveRequest_MemberID" FromRole="member" ToRole="reserve_request" />
+          <NavigationProperty Name="sales_order" Relationship="Self.SalesOrder_MemberID" FromRole="member" ToRole="sales_order" />
+        </EntityType>
+        <EntityType Name="member_discount">
+          <Key>
+            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="start_date" />
+            <PropertyRef Name="end_date" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" />
+          <Property Name="discount" Type="Double" Nullable="false" />
+          <NavigationProperty Name="member_type" Relationship="Self.member_discount_TypeID" FromRole="member_discount" ToRole="member_type" />
+        </EntityType>
+        <EntityType Name="member_type">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="member" Relationship="Self.Member_TypeID" FromRole="member_type" ToRole="member" />
+          <NavigationProperty Name="member_discount" Relationship="Self.member_discount_TypeID" FromRole="member_type" ToRole="member_discount" />
+        </EntityType>
+        <EntityType Name="purchase_order">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+          </Key>
+          <Property Name="PurchaseID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StaffID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StoreID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" />
+          <Property Name="Total" Type="Double" Nullable="false" />
+          <NavigationProperty Name="staff" Relationship="Self.PurchaseOrder_StaffID" FromRole="purchase_order" ToRole="staff" />
+          <NavigationProperty Name="store" Relationship="Self.PurchaseOrder_StoreID" FromRole="purchase_order" ToRole="store" />
+          <NavigationProperty Name="purchase_orderline" Relationship="Self.PurchaseOrderLine_PurchaseOrderID" FromRole="purchase_order" ToRole="purchase_orderline" />
+        </EntityType>
+        <EntityType Name="purchase_orderline">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="PurchaseID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="ItemPrice" Type="Double" Nullable="false" />
+          <Property Name="TotalPrice" Type="Double" Nullable="false" />
+          <NavigationProperty Name="item" Relationship="Self.PurchaseOrderLine_ItemID" FromRole="purchase_orderline" ToRole="item" />
+          <NavigationProperty Name="purchase_order" Relationship="Self.PurchaseOrderLine_PurchaseOrderID" FromRole="purchase_orderline" ToRole="purchase_order" />
+        </EntityType>
+        <EntityType Name="quotation">
+          <Key>
+            <PropertyRef Name="QuotationID" />
+          </Key>
+          <Property Name="QuotationID" Type="Int32" Nullable="false" />
+          <Property Name="StaffID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MemberID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="DCID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="QuotaionDate" Type="DateTime" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="TotalPrice" Type="Double" Nullable="false" />
+          <NavigationProperty Name="dealer_customer" Relationship="Self.Qutation_DCID" FromRole="quotation" ToRole="dealer_customer" />
+          <NavigationProperty Name="member" Relationship="Self.Quotation_MemberID" FromRole="quotation" ToRole="member" />
+          <NavigationProperty Name="quotation_item" Relationship="Self.quotation_item_QuotationID" FromRole="quotation" ToRole="quotation_item" />
+          <NavigationProperty Name="staff" Relationship="Self.Quotation_StaffID" FromRole="quotation" ToRole="staff" />
+        </EntityType>
+        <EntityType Name="quotation_item">
+          <Key>
+            <PropertyRef Name="QuotationID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="QuotationID" Type="Int32" Nullable="false" />
+          <Property Name="ItemID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="SubTotal" Type="Double" Nullable="false" />
+          <NavigationProperty Name="item" Relationship="Self.quotation_item_ItemID" FromRole="quotation_item" ToRole="item" />
+          <NavigationProperty Name="quotation" Relationship="Self.quotation_item_QuotationID" FromRole="quotation_item" ToRole="quotation" />
+        </EntityType>
+        <EntityType Name="reserve_request">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StoreID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="DCID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="SendRequestDate" Type="DateTime" Nullable="false" />
+          <Property Name="ReserveDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="dealer_customer" Relationship="Self.ReserveRequest_DCID" FromRole="reserve_request" ToRole="dealer_customer" />
+          <NavigationProperty Name="item" Relationship="Self.ReserveRequest_ItemID" FromRole="reserve_request" ToRole="item" />
+          <NavigationProperty Name="member" Relationship="Self.ReserveRequest_MemberID" FromRole="reserve_request" ToRole="member" />
+          <NavigationProperty Name="store" Relationship="Self.ReserveRequest_StoreID" FromRole="reserve_request" ToRole="store" />
+        </EntityType>
+        <EntityType Name="sales_order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StoreID" Type="Int32" Nullable="false" />
+          <Property Name="StaffID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MemberID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="DCID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="TotalAmount" Type="Double" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <NavigationProperty Name="dealer_customer" Relationship="Self.SalesOrder_DCID" FromRole="sales_order" ToRole="dealer_customer" />
+          <NavigationProperty Name="member" Relationship="Self.SalesOrder_MemberID" FromRole="sales_order" ToRole="member" />
+          <NavigationProperty Name="sales_orderline" Relationship="Self.sales_orderline_OrderID" FromRole="sales_order" ToRole="sales_orderline" />
+          <NavigationProperty Name="staff" Relationship="Self.SalesOrder_StaffID" FromRole="sales_order" ToRole="staff" />
+          <NavigationProperty Name="store" Relationship="Self.SalesOrder_StoreID" FromRole="sales_order" ToRole="store" />
+          <Property Name="Remark" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sales_orderline">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="TotalPrice" Type="Double" Nullable="false" />
+          <NavigationProperty Name="item" Relationship="Self.sales_orderline_ItemID" FromRole="sales_orderline" ToRole="item" />
+          <NavigationProperty Name="sales_order" Relationship="Self.sales_orderline_OrderID" FromRole="sales_orderline" ToRole="sales_order" />
+        </EntityType>
+        <EntityType Name="staff">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StoreID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HKID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" />
+          <Property Name="DOE" Type="DateTime" Nullable="false" />
+          <Property Name="DOL" Type="DateTime" />
+          <Property Name="SOR" Type="Int32" Nullable="false" />
+          <Property Name="CRM" Type="Int32" Nullable="false" />
+          <Property Name="INV" Type="Int32" Nullable="false" />
+          <Property Name="ENQ" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="purchase_order" Relationship="Self.PurchaseOrder_StaffID" FromRole="staff" ToRole="purchase_order" />
+          <NavigationProperty Name="quotation" Relationship="Self.Quotation_StaffID" FromRole="staff" ToRole="quotation" />
+          <NavigationProperty Name="sales_order" Relationship="Self.SalesOrder_StaffID" FromRole="staff" ToRole="sales_order" />
+          <NavigationProperty Name="store" Relationship="Self.Staff_StoreID" FromRole="staff" ToRole="store" />
+        </EntityType>
+        <EntityType Name="store">
+          <Key>
+            <PropertyRef Name="StoreID" />
+          </Key>
+          <Property Name="StoreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nickname" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="purchase_order" Relationship="Self.PurchaseOrder_StoreID" FromRole="store" ToRole="purchase_order" />
+          <NavigationProperty Name="reserve_request" Relationship="Self.ReserveRequest_StoreID" FromRole="store" ToRole="reserve_request" />
+          <NavigationProperty Name="sales_order" Relationship="Self.SalesOrder_StoreID" FromRole="store" ToRole="sales_order" />
+          <NavigationProperty Name="staff" Relationship="Self.Staff_StoreID" FromRole="store" ToRole="staff" />
+          <NavigationProperty Name="store_item" Relationship="Self.ItemStoreID" FromRole="store" ToRole="store_item" />
+        </EntityType>
+        <EntityType Name="store_item">
+          <Key>
+            <PropertyRef Name="StoreID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="StoreID" Type="Int32" Nullable="false" />
+          <Property Name="ItemID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="item" Relationship="Self.ItemID" FromRole="store_item" ToRole="item" />
+          <NavigationProperty Name="store" Relationship="Self.ItemStoreID" FromRole="store_item" ToRole="store" />
+        </EntityType>
+        <Association Name="CompetitiorPrice_CompetitotID">
+          <End Role="competitor" Type="Self.competitor" Multiplicity="1" />
+          <End Role="competitior_price" Type="Self.competitior_price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="competitor">
+              <PropertyRef Name="CompetitorID" />
+            </Principal>
+            <Dependent Role="competitior_price">
+              <PropertyRef Name="CompetitiorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CompetitiorPrice_DCID">
+          <End Role="dealer_customer" Type="Self.dealer_customer" Multiplicity="0..1" />
+          <End Role="competitior_price" Type="Self.competitior_price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dealer_customer">
+              <PropertyRef Name="DCID" />
+            </Principal>
+            <Dependent Role="competitior_price">
+              <PropertyRef Name="DCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CompetitiorPrice_ItemID">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="competitior_price" Type="Self.competitior_price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="competitior_price">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CompetitiorPrice_MemberID">
+          <End Role="member" Type="Self.member" Multiplicity="0..1" />
+          <End Role="competitior_price" Type="Self.competitior_price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="competitior_price">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Qutation_DCID">
+          <End Role="dealer_customer" Type="Self.dealer_customer" Multiplicity="0..1" />
+          <End Role="quotation" Type="Self.quotation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dealer_customer">
+              <PropertyRef Name="DCID" />
+            </Principal>
+            <Dependent Role="quotation">
+              <PropertyRef Name="DCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReserveRequest_DCID">
+          <End Role="dealer_customer" Type="Self.dealer_customer" Multiplicity="0..1" />
+          <End Role="reserve_request" Type="Self.reserve_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dealer_customer">
+              <PropertyRef Name="DCID" />
+            </Principal>
+            <Dependent Role="reserve_request">
+              <PropertyRef Name="DCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SalesOrder_DCID">
+          <End Role="dealer_customer" Type="Self.dealer_customer" Multiplicity="0..1" />
+          <End Role="sales_order" Type="Self.sales_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dealer_customer">
+              <PropertyRef Name="DCID" />
+            </Principal>
+            <Dependent Role="sales_order">
+              <PropertyRef Name="DCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ItemID">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="store_item" Type="Self.store_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="store_item">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PurchaseOrderLine_ItemID">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="purchase_orderline" Type="Self.purchase_orderline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="purchase_orderline">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="quotation_item_ItemID">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="quotation_item" Type="Self.quotation_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="quotation_item">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReserveRequest_ItemID">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="reserve_request" Type="Self.reserve_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="reserve_request">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sales_orderline_ItemID">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="sales_orderline" Type="Self.sales_orderline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="sales_orderline">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Member_TypeID">
+          <End Role="member_type" Type="Self.member_type" Multiplicity="1" />
+          <End Role="member" Type="Self.member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member_type">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="member">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Quotation_MemberID">
+          <End Role="member" Type="Self.member" Multiplicity="0..1" />
+          <End Role="quotation" Type="Self.quotation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="quotation">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReserveRequest_MemberID">
+          <End Role="member" Type="Self.member" Multiplicity="0..1" />
+          <End Role="reserve_request" Type="Self.reserve_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="reserve_request">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SalesOrder_MemberID">
+          <End Role="member" Type="Self.member" Multiplicity="0..1" />
+          <End Role="sales_order" Type="Self.sales_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="sales_order">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="member_discount_TypeID">
+          <End Role="member_type" Type="Self.member_type" Multiplicity="1" />
+          <End Role="member_discount" Type="Self.member_discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member_type">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="member_discount">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PurchaseOrder_StaffID">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="purchase_order" Type="Self.purchase_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="purchase_order">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PurchaseOrder_StoreID">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="purchase_order" Type="Self.purchase_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="purchase_order">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PurchaseOrderLine_PurchaseOrderID">
+          <End Role="purchase_order" Type="Self.purchase_order" Multiplicity="1" />
+          <End Role="purchase_orderline" Type="Self.purchase_orderline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="purchase_order">
+              <PropertyRef Name="PurchaseID" />
+            </Principal>
+            <Dependent Role="purchase_orderline">
+              <PropertyRef Name="PurchaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="quotation_item_QuotationID">
+          <End Role="quotation" Type="Self.quotation" Multiplicity="1" />
+          <End Role="quotation_item" Type="Self.quotation_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quotation">
+              <PropertyRef Name="QuotationID" />
+            </Principal>
+            <Dependent Role="quotation_item">
+              <PropertyRef Name="QuotationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Quotation_StaffID">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="quotation" Type="Self.quotation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="quotation">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReserveRequest_StoreID">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="reserve_request" Type="Self.reserve_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="reserve_request">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sales_orderline_OrderID">
+          <End Role="sales_order" Type="Self.sales_order" Multiplicity="1" />
+          <End Role="sales_orderline" Type="Self.sales_orderline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sales_order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="sales_orderline">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SalesOrder_StaffID">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="sales_order" Type="Self.sales_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="sales_order">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SalesOrder_StoreID">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="sales_order" Type="Self.sales_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="sales_order">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Staff_StoreID">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="staff" Type="Self.staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="staff">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ItemStoreID">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="store_item" Type="Self.store_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="store_item">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MMS_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="competitior_price" EntityType="Self.competitior_price" />
+          <EntitySet Name="competitor" EntityType="Self.competitor" />
+          <EntitySet Name="dealer_customer" EntityType="Self.dealer_customer" />
+          <EntitySet Name="item" EntityType="Self.item" />
+          <EntitySet Name="member" EntityType="Self.member" />
+          <EntitySet Name="member_discount" EntityType="Self.member_discount" />
+          <EntitySet Name="member_type" EntityType="Self.member_type" />
+          <EntitySet Name="purchase_order" EntityType="Self.purchase_order" />
+          <EntitySet Name="purchase_orderline" EntityType="Self.purchase_orderline" />
+          <EntitySet Name="quotation" EntityType="Self.quotation" />
+          <EntitySet Name="quotation_item" EntityType="Self.quotation_item" />
+          <EntitySet Name="reserve_request" EntityType="Self.reserve_request" />
+          <EntitySet Name="sales_order" EntityType="Self.sales_order" />
+          <EntitySet Name="sales_orderline" EntityType="Self.sales_orderline" />
+          <EntitySet Name="staff" EntityType="Self.staff" />
+          <EntitySet Name="store" EntityType="Self.store" />
+          <EntitySet Name="store_item" EntityType="Self.store_item" />
+          <AssociationSet Name="CompetitiorPrice_CompetitotID" Association="Self.CompetitiorPrice_CompetitotID">
+            <End Role="competitor" EntitySet="competitor" />
+            <End Role="competitior_price" EntitySet="competitior_price" />
+          </AssociationSet>
+          <AssociationSet Name="CompetitiorPrice_DCID" Association="Self.CompetitiorPrice_DCID">
+            <End Role="dealer_customer" EntitySet="dealer_customer" />
+            <End Role="competitior_price" EntitySet="competitior_price" />
+          </AssociationSet>
+          <AssociationSet Name="CompetitiorPrice_ItemID" Association="Self.CompetitiorPrice_ItemID">
+            <End Role="item" EntitySet="item" />
+            <End Role="competitior_price" EntitySet="competitior_price" />
+          </AssociationSet>
+          <AssociationSet Name="CompetitiorPrice_MemberID" Association="Self.CompetitiorPrice_MemberID">
+            <End Role="member" EntitySet="member" />
+            <End Role="competitior_price" EntitySet="competitior_price" />
+          </AssociationSet>
+          <AssociationSet Name="Qutation_DCID" Association="Self.Qutation_DCID">
+            <End Role="dealer_customer" EntitySet="dealer_customer" />
+            <End Role="quotation" EntitySet="quotation" />
+          </AssociationSet>
+          <AssociationSet Name="ReserveRequest_DCID" Association="Self.ReserveRequest_DCID">
+            <End Role="dealer_customer" EntitySet="dealer_customer" />
+            <End Role="reserve_request" EntitySet="reserve_request" />
+          </AssociationSet>
+          <AssociationSet Name="SalesOrder_DCID" Association="Self.SalesOrder_DCID">
+            <End Role="dealer_customer" EntitySet="dealer_customer" />
+            <End Role="sales_order" EntitySet="sales_order" />
+          </AssociationSet>
+          <AssociationSet Name="ItemID" Association="Self.ItemID">
+            <End Role="item" EntitySet="item" />
+            <End Role="store_item" EntitySet="store_item" />
+          </AssociationSet>
+          <AssociationSet Name="PurchaseOrderLine_ItemID" Association="Self.PurchaseOrderLine_ItemID">
+            <End Role="item" EntitySet="item" />
+            <End Role="purchase_orderline" EntitySet="purchase_orderline" />
+          </AssociationSet>
+          <AssociationSet Name="quotation_item_ItemID" Association="Self.quotation_item_ItemID">
+            <End Role="item" EntitySet="item" />
+            <End Role="quotation_item" EntitySet="quotation_item" />
+          </AssociationSet>
+          <AssociationSet Name="ReserveRequest_ItemID" Association="Self.ReserveRequest_ItemID">
+            <End Role="item" EntitySet="item" />
+            <End Role="reserve_request" EntitySet="reserve_request" />
+          </AssociationSet>
+          <AssociationSet Name="sales_orderline_ItemID" Association="Self.sales_orderline_ItemID">
+            <End Role="item" EntitySet="item" />
+            <End Role="sales_orderline" EntitySet="sales_orderline" />
+          </AssociationSet>
+          <AssociationSet Name="Member_TypeID" Association="Self.Member_TypeID">
+            <End Role="member_type" EntitySet="member_type" />
+            <End Role="member" EntitySet="member" />
+          </AssociationSet>
+          <AssociationSet Name="Quotation_MemberID" Association="Self.Quotation_MemberID">
+            <End Role="member" EntitySet="member" />
+            <End Role="quotation" EntitySet="quotation" />
+          </AssociationSet>
+          <AssociationSet Name="ReserveRequest_MemberID" Association="Self.ReserveRequest_MemberID">
+            <End Role="member" EntitySet="member" />
+            <End Role="reserve_request" EntitySet="reserve_request" />
+          </AssociationSet>
+          <AssociationSet Name="SalesOrder_MemberID" Association="Self.SalesOrder_MemberID">
+            <End Role="member" EntitySet="member" />
+            <End Role="sales_order" EntitySet="sales_order" />
+          </AssociationSet>
+          <AssociationSet Name="member_discount_TypeID" Association="Self.member_discount_TypeID">
+            <End Role="member_type" EntitySet="member_type" />
+            <End Role="member_discount" EntitySet="member_discount" />
+          </AssociationSet>
+          <AssociationSet Name="PurchaseOrder_StaffID" Association="Self.PurchaseOrder_StaffID">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="purchase_order" EntitySet="purchase_order" />
+          </AssociationSet>
+          <AssociationSet Name="PurchaseOrder_StoreID" Association="Self.PurchaseOrder_StoreID">
+            <End Role="store" EntitySet="store" />
+            <End Role="purchase_order" EntitySet="purchase_order" />
+          </AssociationSet>
+          <AssociationSet Name="PurchaseOrderLine_PurchaseOrderID" Association="Self.PurchaseOrderLine_PurchaseOrderID">
+            <End Role="purchase_order" EntitySet="purchase_order" />
+            <End Role="purchase_orderline" EntitySet="purchase_orderline" />
+          </AssociationSet>
+          <AssociationSet Name="quotation_item_QuotationID" Association="Self.quotation_item_QuotationID">
+            <End Role="quotation" EntitySet="quotation" />
+            <End Role="quotation_item" EntitySet="quotation_item" />
+          </AssociationSet>
+          <AssociationSet Name="Quotation_StaffID" Association="Self.Quotation_StaffID">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="quotation" EntitySet="quotation" />
+          </AssociationSet>
+          <AssociationSet Name="ReserveRequest_StoreID" Association="Self.ReserveRequest_StoreID">
+            <End Role="store" EntitySet="store" />
+            <End Role="reserve_request" EntitySet="reserve_request" />
+          </AssociationSet>
+          <AssociationSet Name="sales_orderline_OrderID" Association="Self.sales_orderline_OrderID">
+            <End Role="sales_order" EntitySet="sales_order" />
+            <End Role="sales_orderline" EntitySet="sales_orderline" />
+          </AssociationSet>
+          <AssociationSet Name="SalesOrder_StaffID" Association="Self.SalesOrder_StaffID">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="sales_order" EntitySet="sales_order" />
+          </AssociationSet>
+          <AssociationSet Name="SalesOrder_StoreID" Association="Self.SalesOrder_StoreID">
+            <End Role="store" EntitySet="store" />
+            <End Role="sales_order" EntitySet="sales_order" />
+          </AssociationSet>
+          <AssociationSet Name="Staff_StoreID" Association="Self.Staff_StoreID">
+            <End Role="store" EntitySet="store" />
+            <End Role="staff" EntitySet="staff" />
+          </AssociationSet>
+          <AssociationSet Name="ItemStoreID" Association="Self.ItemStoreID">
+            <End Role="store" EntitySet="store" />
+            <End Role="store_item" EntitySet="store_item" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MMS_ModelStoreContainer" CdmEntityContainer="MMS_Entities">
+          <EntitySetMapping Name="competitior_price">
+            <EntityTypeMapping TypeName="MMS_Model.competitior_price">
+              <MappingFragment StoreEntitySet="competitior_price">
+                <ScalarProperty Name="CompetitiorID" ColumnName="CompetitiorID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="DCID" ColumnName="DCID" />
+                <ScalarProperty Name="CompetitiorPrice" ColumnName="CompetitiorPrice" />
+                <ScalarProperty Name="Approval" ColumnName="Approval" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="competitor">
+            <EntityTypeMapping TypeName="MMS_Model.competitor">
+              <MappingFragment StoreEntitySet="competitor">
+                <ScalarProperty Name="CompetitorID" ColumnName="CompetitorID" />
+                <ScalarProperty Name="CompetitorName" ColumnName="CompetitorName" />
+                <ScalarProperty Name="CompetitorDescription" ColumnName="CompetitorDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dealer_customer">
+            <EntityTypeMapping TypeName="MMS_Model.dealer_customer">
+              <MappingFragment StoreEntitySet="dealer_customer">
+                <ScalarProperty Name="DCID" ColumnName="DCID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="item">
+            <EntityTypeMapping TypeName="MMS_Model.item">
+              <MappingFragment StoreEntitySet="item">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+                <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+                <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
+                <ScalarProperty Name="StreetSellingPriceMax" ColumnName="StreetSellingPriceMax" />
+                <ScalarProperty Name="StreetSellingPriceMin" ColumnName="StreetSellingPriceMin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="member">
+            <EntityTypeMapping TypeName="MMS_Model.member">
+              <MappingFragment StoreEntitySet="member">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HKID" ColumnName="HKID" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="member_discount">
+            <EntityTypeMapping TypeName="MMS_Model.member_discount">
+              <MappingFragment StoreEntitySet="member_discount">
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="member_type">
+            <EntityTypeMapping TypeName="MMS_Model.member_type">
+              <MappingFragment StoreEntitySet="member_type">
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="purchase_order">
+            <EntityTypeMapping TypeName="MMS_Model.purchase_order">
+              <MappingFragment StoreEntitySet="purchase_order">
+                <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="purchase_orderline">
+            <EntityTypeMapping TypeName="MMS_Model.purchase_orderline">
+              <MappingFragment StoreEntitySet="purchase_orderline">
+                <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quotation">
+            <EntityTypeMapping TypeName="MMS_Model.quotation">
+              <MappingFragment StoreEntitySet="quotation">
+                <ScalarProperty Name="QuotationID" ColumnName="QuotationID" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="DCID" ColumnName="DCID" />
+                <ScalarProperty Name="QuotaionDate" ColumnName="QuotaionDate" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quotation_item">
+            <EntityTypeMapping TypeName="MMS_Model.quotation_item">
+              <MappingFragment StoreEntitySet="quotation_item">
+                <ScalarProperty Name="QuotationID" ColumnName="QuotationID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reserve_request">
+            <EntityTypeMapping TypeName="MMS_Model.reserve_request">
+              <MappingFragment StoreEntitySet="reserve_request">
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="DCID" ColumnName="DCID" />
+                <ScalarProperty Name="SendRequestDate" ColumnName="SendRequestDate" />
+                <ScalarProperty Name="ReserveDate" ColumnName="ReserveDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sales_order">
+            <EntityTypeMapping TypeName="MMS_Model.sales_order">
+              <MappingFragment StoreEntitySet="sales_order">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="DCID" ColumnName="DCID" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sales_orderline">
+            <EntityTypeMapping TypeName="MMS_Model.sales_orderline">
+              <MappingFragment StoreEntitySet="sales_orderline">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="staff">
+            <EntityTypeMapping TypeName="MMS_Model.staff">
+              <MappingFragment StoreEntitySet="staff">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="HKID" ColumnName="HKID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="DOE" ColumnName="DOE" />
+                <ScalarProperty Name="DOL" ColumnName="DOL" />
+                <ScalarProperty Name="SOR" ColumnName="SOR" />
+                <ScalarProperty Name="CRM" ColumnName="CRM" />
+                <ScalarProperty Name="INV" ColumnName="INV" />
+                <ScalarProperty Name="ENQ" ColumnName="ENQ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="store">
+            <EntityTypeMapping TypeName="MMS_Model.store">
+              <MappingFragment StoreEntitySet="store">
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="store_item">
+            <EntityTypeMapping TypeName="MMS_Model.store_item">
+              <MappingFragment StoreEntitySet="store_item">
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
